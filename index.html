@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Forever Valentine 💖</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Parisienne&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #e31b6d;
+            --secondary-color: #ff99ac;
+            --accent-color: #fff0f3;
+            --text-color: #fff;
+            --bg-gradient: linear-gradient(135deg, #2e001f 0%, #680026 100%);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-gradient);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-color);
+            perspective: 1000px;
+        }
+
+        /* Particle Background */
+        #particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            animation: float 10s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-10vh) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Container Styles */
+        .container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            padding: 2.5rem;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            max-width: 90%;
+            width: 600px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: none;
+            /* Hidden by default */
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container.active {
+            display: flex;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Parisienne', cursive;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+            text-shadow: 0 0 15px rgba(227, 27, 109, 0.8);
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .container {
+                padding: 1.5rem;
+            }
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            color: #ddd;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 12px 35px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            margin: 10px;
+            position: relative;
+            background: linear-gradient(45deg, #ff3366, #ff6b6b);
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 51, 102, 0.4);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 51, 102, 0.6);
+        }
+
+        /* Photo Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .photo-card {
+            background: white;
+            padding: 10px 10px 25px 10px;
+            border-radius: 2px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: rotate(-3deg);
+            transition: transform 0.3s;
+        }
+
+        .photo-card:nth-child(even) {
+            transform: rotate(3deg);
+        }
+
+        .photo-card:hover {
+            transform: scale(1.05) rotate(0deg);
+            z-index: 10;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 2px;
+        }
+
+        /* Love Letter */
+        .letter-content {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.6rem;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            min-height: 200px;
+            position: relative;
+        }
+
+        .cursor::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* Interactive Proposal Buttons */
+        .proposal-btns {
+            position: relative;
+            height: 80px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        #noBtn {
+            background: #4a4a4a;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Music Control */
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 100;
+            font-size: 24px;
+            transition: all 0.3s;
+        }
+
+        .music-control:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(360deg);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="particles"></div>
+
+    <!-- Screen 1: Intro -->
+    <div class="container active" id="screen-intro">
+        <h1>Hey Beautiful... ✨</h1>
+        <p>I have something special to show you.</p>
+        <button class="btn" onclick="nextScreen('screen-gallery')">Start Journey ❤️</button>
+    </div>
+
+    <!-- Screen 2: Gallery -->
+    <div class="container" id="screen-gallery">
+        <h1>Our Memories 📸</h1>
+        <p>Every moment with you is a treasure.</p>
+        <div class="gallery-grid">
+            <!-- Replace these sources with your actual image URLs -->
+            <div class="photo-card"><img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=400"
+                    alt="Memory 1"></div>
+            <div class="photo-card"><img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=400"
+                    alt="Memory 2"></div>
+            <div class="photo-card"><img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=400"
+                    alt="Memory 3"></div>
+            <div class="photo-card"><img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=400"
+                    alt="Memory 4"></div>
+        </div>
+        <button class="btn" onclick="nextScreen('screen-letter')">Next -></button>
+    </div>
+
+    <!-- Screen 3: Letter -->
+    <div class="container" id="screen-letter">
+        <h1>For You... 💌</h1>
+        <div class="letter-content">
+            <span id="typewriter-text"></span><span class="cursor"></span>
+        </div>
+        <button class="btn" id="letter-next-btn" style="opacity: 0; pointer-events: none;"
+            onclick="nextScreen('screen-proposal')">One Last Thing...</button>
+    </div>
+
+    <!-- Screen 4: Proposal -->
+    <div class="container" id="screen-proposal">
+        <h1>Will You Be My Valentine? 🌹</h1>
+        <p>You are my sunshine, my joy, and my everything.</p>
+        <div class="proposal-btns">
+            <button class="btn" id="yesBtn" onclick="acceptProposal()">YES! 😍</button>
+            <button class="btn" id="noBtn" onmouseover="dodgeButton()" ontouchstart="dodgeButton()">No 😢</button>
+        </div>
+    </div>
+
+    <!-- Screen 5: Celebration -->
+    <div class="container" id="screen-celebration">
+        <h1>I Knew It! 💖</h1>
+        <img src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif" alt="Celebration"
+            style="width: 100%; border-radius: 10px; margin-bottom: 20px;">
+        <p>I love you so much! Can't wait for our date! 🥰</p>
+    </div>
+
+    <!-- Audio -->
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3" type="audio/mp3">
+    </audio>
+    <div class="music-control" onclick="toggleMusic()">🎵</div>
+
+    <script>
+        /* --- CONFIGURATION --- */
+        // ACTION: Replace with your actual email to receive the notification
+        const YOUR_EMAIL = "demo@gmail.com";
+
+        // ACTION: Customize your love letter here
+        const loveLetterText = "Dearest Love,\n\nFrom the moment I met you, my world has been brighter. Your smile is my favorite sight, and your laughter is my favorite sound.\n\nI cherish every moment we share, and I want to create a million more memories with you.\n\nSo, I have a very important question...";
+        /* --------------------- */
+
+        // Particle System
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 30; i++) {
+                const p = document.createElement('div');
+                p.classList.add('particle');
+                p.style.left = Math.random() * 100 + 'vw';
+                p.style.width = Math.random() * 10 + 5 + 'px';
+                p.style.height = p.style.width;
+                p.style.animationDuration = Math.random() * 10 + 10 + 's';
+                p.style.animationDelay = Math.random() * 10 + 's';
+                container.appendChild(p);
+            }
+        }
+        createParticles();
+
+        // Screen Navigation
+        function nextScreen(targetId) {
+            document.querySelectorAll('.container').forEach(c => c.classList.remove('active'));
+            const target = document.getElementById(targetId);
+            target.classList.add('active');
+
+            if (targetId === 'screen-intro') {
+                playMusic();
+            }
+            if (targetId === 'screen-letter') {
+                startTypewriter();
+            }
+        }
+
+        // Music Control
+        const music = document.getElementById('bgMusic');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                isPlaying = false;
+            } else {
+                music.play();
+                isPlaying = true;
+            }
+        }
+
+        function playMusic() {
+            if (!isPlaying) {
+                music.play().then(() => {
+                    isPlaying = true;
+                }).catch(e => console.log("Auto-play blocked"));
+            }
+        }
+
+        // Typewriter Effect
+        let charIndex = 0;
+        function startTypewriter() {
+            const elem = document.getElementById('typewriter-text');
+            elem.innerHTML = "";
+            charIndex = 0;
+            type();
+        }
+
+        function type() {
+            if (charIndex < loveLetterText.length) {
+                const char = loveLetterText.charAt(charIndex);
+                document.getElementById('typewriter-text').innerHTML += char === '\n' ? '<br>' : char;
+                charIndex++;
+                setTimeout(type, 50);
+            } else {
+                // Show next button after typing is done
+                const btn = document.getElementById('letter-next-btn');
+                btn.style.opacity = '1';
+                btn.style.pointerEvents = 'auto';
+            }
+        }
+
+        // "No" Button Interaction
+        let dodgeCount = 0;
+        function dodgeButton() {
+            const btn = document.getElementById('noBtn');
+            const phrases = [
+                "No 😢", "Are you sure?", "Really?", "Think again!",
+                "Don't break my heart 💔", "Please? 🥺", "Last chance!",
+                "You can't say no!", "I'll give you cookies 🍪", "But I love you! ❤️"
+            ];
+
+            // Move button
+            const x = Math.random() * (window.innerWidth - 200);
+            const y = Math.random() * (window.innerHeight - 100);
+
+            btn.style.position = 'fixed';
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+
+            // Change text
+            btn.innerText = phrases[dodgeCount % phrases.length];
+            dodgeCount++;
+        }
+
+        // "Yes" Action & Email Notification
+        function acceptProposal() {
+            // 1. Show celebration immediately
+            nextScreen('screen-celebration');
+            triggerConfetti();
+
+            // 2. Send silent email notification
+            sendNotification();
+        }
+
+        function sendNotification() {
+            if (YOUR_EMAIL === "INSERT_YOUR_EMAIL_HERE") {
+                console.warn("Email not configured.");
+                return;
+            }
+
+            fetch(`https://formsubmit.co/ajax/${YOUR_EMAIL}`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    subject: "SHE SAID YES! 💖",
+                    message: "Congratulations! Your Valentine accepted the proposal happened on your website! 💍✨",
+                    timestamp: new Date().toLocaleString()
+                })
+            })
+                .then(response => response.json())
+                .then(data => console.log("Email sent successfully", data))
+                .catch(error => console.error("Error sending email", error));
+        }
+
+        // Confetti
+        function triggerConfetti() {
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff'];
+            for (let i = 0; i < 150; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = '-10px';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.zIndex = '1000';
+                document.body.appendChild(confetti);
+
+                confetti.animate([
+                    { transform: `translateY(0) rotate(0deg)`, opacity: 1 },
+                    { transform: `translateY(100vh) rotate(${Math.random() * 720}deg)`, opacity: 0 }
+                ], {
+                    duration: Math.random() * 2000 + 3000,
+                    easing: 'linear',
+                    fill: 'forwards'
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>
